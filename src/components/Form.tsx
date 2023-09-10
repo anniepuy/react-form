@@ -1,18 +1,19 @@
 import React, { FormEvent, useRef } from "react";
 
 const Form = () => {
-    const nameRef = useRef(null)
+    const nameRef = useRef<HTMLInputElement>(null)
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        console.log(nameRef.current.value);
+        if (nameRef.current !== null)
+            console.log(nameRef.current.value);
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
-                <label ref={nameRef} htmlFor="name" className="form-label">Name</label>
-                <input type="text" className="form-control"/>
+                <label htmlFor="name" className="form-label">Name</label>
+                <input ref={nameRef} type="text" className="form-control"/>
             </div>
             <div className="mb-3">
                 <label htmlFor="age" className="form-label">Age</label>
